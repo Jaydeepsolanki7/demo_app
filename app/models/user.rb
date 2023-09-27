@@ -3,4 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         :confirmable
+  after_create :send_admin_mail
+  def send_admin_mail
+    UserMailer.send_new_user_message(self).deliver
+  end
 end
