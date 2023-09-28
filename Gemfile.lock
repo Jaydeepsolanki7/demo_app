@@ -110,6 +110,15 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -184,6 +193,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     rubyzip (2.3.2)
     selenium-webdriver (4.13.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -234,8 +244,10 @@ DEPENDENCIES
   devise (~> 4.9.2)
   jbuilder
   jsbundling-rails
+  letter_opener_web (~> 2.0)
   puma (~> 5.0)
   rails (~> 7.0.8)
+  rolify (~> 6.0.1)
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)

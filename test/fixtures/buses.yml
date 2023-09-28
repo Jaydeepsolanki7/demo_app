@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_type: 1
+  capacity: 1
+  departure_time: 2023-09-27 19:35:40
+  arrival_time: 2023-09-27 19:35:40
+  rating: 9.99
+  seat_price: 1
+  available: false
+  route: one
+
+two:
+  bus_type: 1
+  capacity: 1
+  departure_time: 2023-09-27 19:35:40
+  arrival_time: 2023-09-27 19:35:40
+  rating: 9.99
+  seat_price: 1
+  available: false
+  route: two

@@ -10,17 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_26_130030) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_28_071557) do
+  create_table "buses", force: :cascade do |t|
+    t.integer "bus_type"
+    t.integer "capacity"
+    t.time "departure_time"
+    t.time "arrival_time"
+    t.decimal "rating", precision: 1, scale: 1
+    t.integer "seat_price"
+    t.boolean "available"
+    t.integer "route_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_id"], name: "index_buses_on_route_id"
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.string "destination"
+    t.string "starting_point"
+    t.integer "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "age"
+    t.string "gender"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "buses", "routes"
 end
