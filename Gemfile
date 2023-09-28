@@ -49,8 +49,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 #
 #
-#adding roles by rlify gem
+#adding roles by rolify gem
 gem "rolify" , "~> 6.0.1"
+
 #
 
 # Use Sass to process CSS
