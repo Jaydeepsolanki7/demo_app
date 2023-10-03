@@ -1,0 +1,9 @@
+<h1 style="text-align:center"> All Routes </h1>
+<div class="container">
+  <% @routes.each do |route|%>
+  <div class="me-3"><h2><%= link_to route.route_name, route %></h2></div>
+  <br>
+  <%end%>
+</div>
+
+<div><%=link_to "New Route", routes_new_path	%>

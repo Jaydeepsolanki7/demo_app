@@ -19,27 +19,24 @@
 <div class="container my-4 ms-auto">
 
   <div class="row ">
-    <div class="col- my-3">
+    <div>
 
       <% if @buses.present? %>
-        <h2>Search Results:</h2>
-        <% @buses.each do |bus| %>
-        <div class="clearfix bus-item">
-          <div class="card" style="width: 18rem;">
+        <%= provide(:title, "All-Searches") %>
+
+          <h2>Search Results:</h2>
+
+          <% @buses.each do |bus| %>
+            <div class="card">
             <div class="card"></div>
-            <h5 class="card-title text-center">  <%= bus.bus_name %></h5>
+            <h5 class="card-title text-center my-1">  <%= bus.bus_name %></h5><hr>
             <div class="card-body">
-              Departure Date: <%= bus.departure_date %>
+              Departure Date: <%= bus.departure_date %><br>
               Destination: <%= bus.bus_destination %><br>
               Price: <%= bus.seat_price %>
             </div>
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">BOOK NOW</a>
-
-            <div class="collapse" id="collapseExample">
-             <div class="card card-body">
-
-            </div>  
-          </div> 
+              <%=link_to "Book Now", bus_path(bus), class:"btn btn-primary " %></a>
+          </div>  
         <%end%>
       <%else%>
           <h2 class="card-text"> No buses found for the given criteria.</h2>
@@ -47,3 +44,6 @@
     </div>
   </div>
 </div>
+
+
+<%=button_to "All-Routes", routes_index_path, class:"btn btn-primary", method: :get	%>
