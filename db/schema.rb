@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_103245) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_062907) do
   create_table "buses", force: :cascade do |t|
     t.integer "bus_type"
     t.integer "capacity"
-    t.time "departure_time"
-    t.time "arrival_time"
+    t.date "departure_date"
+    t.date "arrival_date"
     t.decimal "rating", precision: 1, scale: 1
     t.integer "seat_price"
     t.boolean "available"
     t.integer "route_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bus_destination"
+    t.string "bus_arrival"
+    t.string "bus_name"
     t.index ["route_id"], name: "index_buses_on_route_id"
   end
 
@@ -42,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_103245) do
     t.integer "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "seats", force: :cascade do |t|
+    t.integer "bus_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "seat_no"
+    t.integer "status"
+    t.index ["bus_id"], name: "index_seats_on_bus_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +85,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_103245) do
   end
 
   add_foreign_key "buses", "routes"
+  add_foreign_key "seats", "buses"
 end

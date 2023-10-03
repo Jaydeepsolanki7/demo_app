@@ -15,3 +15,26 @@ body {
   .center h1 {
   margin-bottom: 10px;
   }
+  footer {
+    margin-top: 45px;
+    padding-top: 5px;
+    border-top: 1px solid gray;
+    color: gray;
+    a {
+      color: gray;
+        &:hover {
+          color: gray;
+        }
+      }
+    small {
+    float: left;
+    }
+    ul {
+    float: right;
+    list-style: none;
+      li {
+      float: left;
+      margin-left: 15px;
+      }
+    }
+    }
