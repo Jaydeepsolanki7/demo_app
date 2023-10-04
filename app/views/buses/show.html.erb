@@ -1,12 +1,14 @@
-<%# <% while @bus.capacity > 0 do %>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
-          <div class="card bg-dark text-white text-center mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Panel title that wraps to a new line</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<%= form_with model: [@bus, @bus.seats.build] do |form| %>
+<div>
+  <%= form.select :status, [:seat_available, :seat_unavailable]%>
+</div>
+
+<div>
+  <%= form.label :seat_no %>
+  <%= form.number_field :seat_no, in: 1..@bus.capacity %><br>
+</div>
+
+<div>
+  <%= form.submit class:"btn btn-success"%>
+</div>
+<%end%>

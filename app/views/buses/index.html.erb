@@ -16,6 +16,8 @@
   <% end %>
 </div>
 
+<hr>
+
 <div class="container my-4 ms-auto">
 
   <div class="row ">
@@ -29,13 +31,22 @@
           <% @buses.each do |bus| %>
             <div class="card">
             <div class="card"></div>
-            <h5 class="card-title text-center my-1">  <%= bus.bus_name %></h5><hr>
+            <h2 class="card-title bg-dark text-white text-center ">  <%= bus.bus_name %></h2><hr>
             <div class="card-body">
-              Departure Date: <%= bus.departure_date %><br>
-              Destination: <%= bus.bus_destination %><br>
-              Price: <%= bus.seat_price %>
+              <div class="container">
+                <h6>
+                  Bus-Type: <%= bus.bus_type%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Departure Date: <%= bus.departure_date %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Destination: <%= bus.bus_destination %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Price: <%= bus.seat_price %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Capacity: <%= bus.capacity%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Ratings: <%= bus.rating %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Arrival: <%= bus.bus_arrival%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Seats-Available: <%= (bus.capacity-bus.seats.where(status:"seat_unavailable").count)%>
+                </h6>
+              </div>
             </div>
-              <%=link_to "Book Now", bus_path(bus), class:"btn btn-primary " %></a>
+              <%=link_to "Book Now", bus_path(bus), class:"btn btn-primary my-4 " %></a><br>
           </div>  
         <%end%>
       <%else%>

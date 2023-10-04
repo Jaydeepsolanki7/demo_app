@@ -8,9 +8,6 @@
 <div class="container">
   <%=form_with model: [ @route, @route.buses.build ] do |form| %>
 
-    <div>
-      <%= form.select :bus_type, [:normal, :ac_sleeper, :sleeper] %>
-    </div>
 
     <div>
       <%= form.label :capacity %><br>
@@ -27,6 +24,10 @@
       <%= form.date_field :arrival_date, class:"form-control"  %><br>
     </div>
 
+    <div class="field">
+        <%= form.label "Available" %> 
+        <%= form.check_box :available %> <br />
+    </div>
 
     <div>
       <%= form.label :seat_price %><br>
@@ -43,6 +44,11 @@
       <%= form.text_field :bus_arrival, class:"form-control"  %><br>
     </div>
 
+    
+    <div>
+      <%= form.select :bus_type, [:normal, :ac_sleeper, :sleeper]%>
+    </div>
+
     <div>
       <%= form.label :bus_name %><br>
       <%= form.text_field :bus_name, class:"form-control"  %><br>
@@ -50,7 +56,7 @@
 
     <div>
       <%= form.submit class:"btn btn-success"%>
-    
     </div>
+    
   <% end %>
 </div>

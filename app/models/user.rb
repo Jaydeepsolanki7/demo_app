@@ -14,4 +14,6 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:member) if self.roles.blank?
   end
+
+  has_many :bookings, through: :bus
 end

@@ -16,12 +16,10 @@ class BusesController < ApplicationController
   end
 
   def create
-    @bus = Bus.create(bus_params)
-    if @bus.save
-      redirect_to buses_index_path(@bus)	
-    else
-      render :new, status: :see_other
-    end
+    @route = Route.find(params[:route_id])
+    @bus = @route.buses.create(bus_params)
+    @bus.save 
+    redirect_to routes_show_path(@route)
   end
 
   private

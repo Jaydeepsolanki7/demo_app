@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_102637) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_092619) do
+  create_table "bookings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "bus_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_names"
+    t.integer "booked_seat"
+    t.index ["bus_id"], name: "index_bookings_on_bus_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
   create_table "buses", force: :cascade do |t|
     t.integer "bus_type"
     t.integer "capacity"
@@ -83,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_102637) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "bookings", "buses"
+  add_foreign_key "bookings", "users"
   add_foreign_key "buses", "routes"
   add_foreign_key "seats", "buses"
 end

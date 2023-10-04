@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get 'buses/index'
   get 'buses/new'
 
-  resources :buses
+  resources :buses do
+    resources :seats
+  end
+  
   devise_for :users
   root "buses#index"
 
