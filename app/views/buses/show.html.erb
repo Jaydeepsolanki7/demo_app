@@ -1,14 +1,70 @@
-<%= form_with model: [@bus, @bus.seats.build] do |form| %>
-<div>
-  <%= form.select :status, [:seat_available, :seat_unavailable]%>
-</div>
+<h1>Seats for buses -  <%= @bus.bus_name %></h1>
 
-<div>
-  <%= form.label :seat_no %>
-  <%= form.number_field :seat_no, in: 1..@bus.capacity %><br>
-</div>
 
-<div>
-  <%= form.submit class:"btn btn-success"%>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 10%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 25px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+
+
+<table class=mx-auto>
+
+      <th>Seat Number</th>
+      <th>Status</th>
+      <th>Click Here</th>
+      <% @seats.each do |seat|%>
+
+    <tr>
+      <td><%= seat.seat_no%></td>
+      <td><%= seat.availablity ? "YES" : "NO"%></td>
+      <% if seat.availablity == true %> 
+        <td><%=link_to "BOOK NOW", edit_bus_seat_path(@bus, seat) %></td>
+      <%else%>
+        <td><%="Already Booked"%> 
+      <%end%>
+    </tr>
+    <%end%>
+  </table>
+
+</body>
+</html>
+
+
+<% if current_user.has_role? :admin %>
+  <%= form_with model: [@bus, @bus.seats.build] do |form| %>
+
+    <div>
+      <%= form.label :seat_no %>
+      <%= form.number_field :seat_no, in: 1..@bus.capacity %><br>
+    </div>
+    
+    <div>
+      <%= form.label :availablity %>
+      <%= form.check_box :availablity %> <br>
+    </div>
+
+    <div>
+      <%= form.submit class:"btn btn-success"%>
+    </div>
+
+  <%end%>
 <%end%>

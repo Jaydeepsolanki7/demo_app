@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'buses/index'
   get 'buses/new'
 
-  resources :buses do
-    resources :seats
+  resources :buses, only: [:index, :show, :new, :create] do
+    resources :seats, only: [:show, :new, :create, :edit, :update]
   end
   
   devise_for :users
@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   get "about", to: "welcomes#about"
   
   resources :routes do
-    resources :buses
+    resources :buses, only: [:new, :create]
   end
 end

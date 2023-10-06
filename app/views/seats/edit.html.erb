@@ -1,0 +1,7 @@
+<%= form_with model: @bus, seat do |f| %>
+    <%if seat.availablity == true %>
+      <%= f.label :seat_no, seat.seat_no %>
+      <%= f.check_box :seat_no, value: seat.seat_no %>
+    <%end%>
+  <%= f.submit %>
+<% end %>

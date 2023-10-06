@@ -15,5 +15,5 @@ class User < ApplicationRecord
     self.add_role(:member) if self.roles.blank?
   end
 
-  has_many :bookings, through: :bus
+  has_many :bookings
 end
