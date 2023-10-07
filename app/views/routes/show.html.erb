@@ -4,59 +4,14 @@
 <div style="text-align:center"><%= button_to "edit",edit_route_path(@route), method: :get, class:"btn btn-primary" %></div>
 <hr>
 
-<h2 style="text-align:center"> Create-Bus </h2>
 <div class="container">
-  <%=form_with model: [ @route, @route.buses.build ] do |form| %>
-
-
-    <div>
-      <%= form.label :capacity %><br>
-      <%= form.number_field :capacity, class:"form-control"  %><br>
-    </div>
-
-    <div>
-      <%= form.label :departure_date %><br>
-      <%= form.date_field :departure_date, class:"form-control"  %>
-    </div>
-
-    <div>
-      <%= form.label :arrival_date %><br>
-      <%= form.date_field :arrival_date, class:"form-control"  %><br>
-    </div>
-
-    <div class="field">
-        <%= form.label "Available" %> 
-        <%= form.check_box :available %> <br />
-    </div>
-
-    <div>
-      <%= form.label :seat_price %><br>
-      <%= form.number_field :seat_price, class:"form-control"  %><br>
-    </div>
-
-    <div>
-      <%= form.label :bus_destination %><br>
-      <%= form.text_field :bus_destination, class:"form-control"  %><br>
-    </div>
-
-    <div>
-      <%= form.label :bus_arrival %><br>
-      <%= form.text_field :bus_arrival, class:"form-control"  %><br>
-    </div>
-
-    
-    <div>
-      <%= form.select :bus_type, [:normal, :ac_sleeper, :sleeper]%>
-    </div>
-
-    <div>
-      <%= form.label :bus_name %><br>
-      <%= form.text_field :bus_name, class:"form-control"  %><br>
-    </div>
-
-    <div>
-      <%= form.submit class:"btn btn-success"%>
-    </div>
-    
-  <% end %>
+  <h2> All buses on this route <h2>
+  <ul>
+    <% @route.buses.each do |bus| %>
+      <h2><%= bus.bus_name %></h2>
+      <%end%>
+  </ul>
 </div>
+
+<%= link_to "Add more buses", new_route_bus_path(@route) %>
+

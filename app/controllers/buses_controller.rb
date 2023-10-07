@@ -14,7 +14,9 @@ class BusesController < ApplicationController
   end
 
   def new
-    @bus = Bus.new
+    @route = Route.find(params[:route_id])
+
+    @bus = @route.buses.new
   end
 
   def create

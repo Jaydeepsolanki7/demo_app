@@ -1,44 +1,66 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 body {
-  padding-top: 60px;
-  }
-  section {
-  overflow: auto;
-  }
-  textarea {
-  resize: vertical;
-  }
-  .center {
-  text-align: center;
-  }
-  .center h1 {
-  margin-bottom: 10px;
-  }
-  footer {
+    padding-top: 60px;
+}
+
+section {
+    overflow: auto;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.center {
+    text-align: center;
+}
+
+.center h1 {
+    margin-bottom: 10px;
+}
+
+footer {
     margin-top: 45px;
     padding-top: 5px;
     border-top: 1px solid gray;
     color: gray;
     a {
-      color: gray;
+        color: gray;
         &:hover {
-          color: gray;
+            color: gray;
         }
-      }
+    }
     small {
-    float: left;
+        float: left;
     }
     ul {
-    float: right;
-    list-style: none;
-      li {
-      float: left;
-      margin-left: 15px;
+        float: right;
+        list-style: none;
+        li {
+            float: left;
+            margin-left: 15px;
+        }
     }
-  }
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 10%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 25px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }

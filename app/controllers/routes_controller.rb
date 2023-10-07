@@ -5,6 +5,7 @@ class RoutesController < ApplicationController
   
   def show
     @route = Route.find(params[:id])
+    buses = @route.buses
   end
   
   def new
