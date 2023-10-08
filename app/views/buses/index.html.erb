@@ -33,30 +33,25 @@
            
             <h2 class="card-title bg-dark text-white text-center ">  <%= bus.bus_name %></h2>
             <div class="card-body">
-              <h6>
+            <h6>
+                Arrival: <%= bus.bus_arrival %><br>
                 Bus-Type: <%= bus.bus_type%><br>
                 Departure Date: <%= bus.departure_date %><br>
                 Destination: <%= bus.bus_destination %><br>
                 Price: <%= bus.seat_price %><br>
                 Capacity: <%= bus.capacity%><br>
                 Ratings: <%= bus.rating %><br>
-                Arrival: <%= bus.bus_arrival%>
-            
-                
-                <% if  (bus.capacity-bus.seats.where(availablity:"YES").count) <0%>
-                  Seats-Available: <%="No seat avaliable"%>
-                <%else%>
-                  Seats-Available: <%= (bus.capacity-bus.seats.where(availablity:"YES").count)%>
-                <%end%>
+                Available-seats: <%= bus.seats.where(status: "available").count %> 
+
               </h6>
+
               <div style="text-align:right">
-                <%=link_to "Book Now", bus_path(bus), class:"btn btn-dark 
-                my-1 " %>
+                <%=link_to "Book Now", bus_path(bus), class:"btn btn-dark my-1 " %>
               </div>
-            </div>
-             
-          </div>  
-        <%end%>
+            </div> 
+           
+          <%end%>
+        </div>  
       <%else%>
           <h2 class="card-text"> No buses found for the given criteria.</h2>
       <%end%>

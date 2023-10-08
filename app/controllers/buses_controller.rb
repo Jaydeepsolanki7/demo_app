@@ -10,7 +10,7 @@ class BusesController < ApplicationController
 
   def show
     @bus = Bus.find(params[:id])
-    @seats = Seat.all
+    @seats = @bus.seats
   end
 
   def new

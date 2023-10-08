@@ -1,28 +1,45 @@
 <h1>Seats for buses -  <%= @bus.bus_name %></h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 bg-dark text-white">
+      <h4 class="my-2"> SEATS AVAILABLE </h4><hr>
+      
+      <h6>
+        AVAILABLE : <%= @seats.available.count%>
+      </h6>
 
+    </div>
+  </div>
+</div>
 
+<div class = "my-img center"><%= image_tag("stering.png", width: 40) %></div>
 
-
-
-<table class=mx-auto>
-
-      <th>Seat Number</th>
-      <th>Status</th>
-      <th>Click Here</th>
-      <% @seats.each do |seat|%>
-
-    <tr>
-      <td><%= seat.seat_no%></td>
-      <td><%= seat.availablity ? "YES" : "NO"%></td>
-      <% if seat.availablity == true %> 
-        <td><%=link_to "BOOK NOW"  %></td>
-      <%else%>
-        <td><%="Already Booked"%> 
-      <%end%>
-    </tr>
-    <%end%>
+<%= form_with(url: update_multiple_seats_path, method: :patch) do |form| %>
+  <table class="rotated-table  mx-auto center">
+    <thead>
+      <tr>
+        <th>Seat_no</th>
+        <th>Status</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @seats.each do |seat| %>
+        <tr>
+          <td><%= seat.seat_no %></td>
+          <td><%= seat.status ? 'available' : 'booked'%></td>
+          <% if (seat.status == "available")%> 
+            <td><%= check_box_tag 'selected_seats[]', seat.id, nil, {multiple: true} %></td>
+          <%else%>
+            <td>--</td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-
-</body>
-</html>
+      
+  <div>
+    <%= button_to "Book Seats", update_multiple_seats_path, method: :patch, class:"btn btn-primary center" %>
+  </div>
+<% end %>
