@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   resources :seats 
 
   resources :reservations, only: [:new, :create]
-  post 'new_reservation', to: 'reservations#new_reservation_path'	
   patch 'update_multiple_seats', to: 'seats#update_multiple_seats'
 
 

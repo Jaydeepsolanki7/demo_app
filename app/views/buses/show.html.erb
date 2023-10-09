@@ -15,7 +15,7 @@
 
 <div class = "my-img center"><%= image_tag("stering.png", width: 40) %></div>
 
-<%= form_with(url: update_multiple_seats_path, method: :patch) do |form| %>
+<%= form_with(url: reservations_path, method: :post) do |form| %>
   <table class="rotated-table  mx-auto center">
     <thead>
       <tr>
@@ -28,7 +28,7 @@
       <% @seats.each do |seat| %>
         <tr>
           <td><%= seat.seat_no %></td>
-          <td><%= seat.status ? 'available' : 'booked'%></td>
+          <td><%= seat.status%></td>
           <% if (seat.status == "available")%> 
             <td><%= check_box_tag 'selected_seats[]', seat.id, nil, {multiple: true} %></td>
           <%else%>
@@ -40,6 +40,6 @@
   </table>
       
   <div>
-    <%= button_to "Book Seats", update_multiple_seats_path, method: :patch, class:"btn btn-primary center" %>
+    <%= button_to "proceed", reservations_path	, method: :post, class:"btn btn-primary center" %>
   </div>
 <% end %>
