@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
   def new
-    @user = User.find(params[:id])
-    @
+    @reservation = Reservation.new
   end
+  
 end

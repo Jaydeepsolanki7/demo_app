@@ -37,7 +37,9 @@ class SeatsController < ApplicationController
     else
       selected_seat_ids.each do |seat_id|
         seat = Seat.find(seat_id)
-        seat.update(status: !seat.status?)
+        if seat.update(status: !seat.status?)
+          SeatBookingMailer.acceptance_email(seat).deliver_now
+        end
       end
 
       redirect_to seats_path, notice: 'Selected seats have been updated successfully.'
