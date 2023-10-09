@@ -48,7 +48,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_08_130404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "reservation_date"
-    t.string "seat_status"
     t.index ["seat_id"], name: "index_reservations_on_seat_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
