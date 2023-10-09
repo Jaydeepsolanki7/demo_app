@@ -1,44 +1,62 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
-body {
-  padding-top: 60px;
-  }
-  section {
-  overflow: auto;
-  }
-  textarea {
-  resize: vertical;
-  }
-  .center {
-  text-align: center;
-  }
-  .center h1 {
-  margin-bottom: 10px;
-  }
-  footer {
-    margin-top: 45px;
-    padding-top: 5px;
-    border-top: 1px solid gray;
-    color: gray;
-    a {
-      color: gray;
-        &:hover {
-          color: gray;
+    @import 'bootstrap/scss/bootstrap';
+    @import 'bootstrap-icons/font/bootstrap-icons';
+    body {
+        padding-top: 60px;
+    }
+    
+    section {
+        overflow: auto;
+    }
+    
+    textarea {
+        resize: vertical;
+    }
+    
+    .center {
+        text-align: center;
+    }
+    
+    .center h1 {
+        margin-bottom: 10px;
+    }
+    
+    footer {
+        margin-top: 45px;
+        padding-top: 5px;
+        border-top: 1px solid gray;
+        color: gray;
+        a {
+            color: gray;
+            &:hover {
+                color: gray;
+            }
         }
-      }
-    small {
-    float: left;
+        small {
+            float: left;
+        }
+        ul {
+            float: right;
+            list-style: none;
+            li {
+                float: left;
+                margin-left: 15px;
+            }
+        }
     }
-    ul {
-    float: right;
-    list-style: none;
-      li {
-      float: left;
-      margin-left: 15px;
+    
+    h1 {
+        text-align: center;
     }
-  }
-}
-
-h1 {
-  text-align: center;
-}
+    
+    .rotated-table {
+        transform: rotate();
+        transform-origin: center;
+    }
+    
+    .rotated-table th,
+    .rotated-table td {
+        text-align: center;
+        vertical-align: top;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }

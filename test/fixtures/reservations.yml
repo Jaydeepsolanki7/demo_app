@@ -2,8 +2,8 @@
 
 one:
   user: one
-  bus: one
+  seat: one
 
 two:
   user: two
-  bus: two
+  seat: two

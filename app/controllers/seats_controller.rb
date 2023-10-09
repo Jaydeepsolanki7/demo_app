@@ -35,6 +35,4 @@ class SeatsController < ApplicationController
     params.require(:seat).permit(:seat_no, :availablity)
   end
 
-  # def creating_seats
-  # end
 end

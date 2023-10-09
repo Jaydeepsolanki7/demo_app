@@ -10,11 +10,13 @@ class BusesController < ApplicationController
 
   def show
     @bus = Bus.find(params[:id])
-    @seats = Seat.all
+    @seats = @bus.seats
   end
 
   def new
-    @bus = Bus.new
+    @route = Route.find(params[:route_id])
+
+    @bus = @route.buses.new
   end
 
   def create

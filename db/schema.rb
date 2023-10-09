@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_122137) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_08_130404) do
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "bus_id", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_122137) do
     t.string "user_names"
     t.integer "booked_seat"
     t.integer "seat_id", null: false
+    t.datetime "booking_date"
     t.index ["bus_id"], name: "index_bookings_on_bus_id"
     t.index ["seat_id"], name: "index_bookings_on_seat_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
@@ -39,6 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_122137) do
     t.string "bus_arrival"
     t.string "bus_name"
     t.index ["route_id"], name: "index_buses_on_route_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "seat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "reservation_date"
+    t.index ["seat_id"], name: "index_reservations_on_seat_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -64,7 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_122137) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seat_no"
-    t.boolean "availablity", default: true
+    t.integer "seat_price"
+    t.string "status", default: "available"
     t.index ["bus_id"], name: "index_seats_on_bus_id"
   end
 
@@ -100,5 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_122137) do
   add_foreign_key "bookings", "seats"
   add_foreign_key "bookings", "users"
   add_foreign_key "buses", "routes"
+  add_foreign_key "reservations", "seats"
+  add_foreign_key "reservations", "users"
   add_foreign_key "seats", "buses"
 end
