@@ -4,6 +4,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @bus = Bus.find(params[:id])
     @reservation = Reservation.find(params[:id])
   end
 
