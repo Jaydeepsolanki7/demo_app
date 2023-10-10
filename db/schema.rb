@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_08_130404) do
-  create_table "bookings", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "bus_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "user_names"
-    t.integer "booked_seat"
-    t.integer "seat_id", null: false
-    t.datetime "booking_date"
-    t.index ["bus_id"], name: "index_bookings_on_bus_id"
-    t.index ["seat_id"], name: "index_bookings_on_seat_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
-  end
-
+ActiveRecord::Schema[7.1].define(version: 2023_10_10_113256) do
   create_table "buses", force: :cascade do |t|
     t.integer "bus_type"
     t.integer "capacity"
@@ -47,7 +33,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_08_130404) do
     t.integer "seat_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "reservation_date"
+    t.integer "reservation_status", default: 0
+    t.datetime "reservation_date", default: "2023-10-10 13:14:23"
+    t.string "user_name"
+    t.string "user_email"
+    t.string "gender"
+    t.integer "user_age"
     t.index ["seat_id"], name: "index_reservations_on_seat_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -108,9 +99,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_08_130404) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "bookings", "buses"
-  add_foreign_key "bookings", "seats"
-  add_foreign_key "bookings", "users"
   add_foreign_key "buses", "routes"
   add_foreign_key "reservations", "seats"
   add_foreign_key "reservations", "users"

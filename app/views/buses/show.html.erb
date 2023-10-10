@@ -1,7 +1,7 @@
 <h1>Seats for buses -  <%= @bus.bus_name %></h1>
-
-<div class="container">
-  <div class="row">
+<span>
+<div class="container ">
+  <div class="row my-auto">
     <div class="col-md-3 bg-dark text-white">
       <h4 class="my-2"> SEATS AVAILABLE </h4><hr>
       
@@ -12,8 +12,9 @@
     </div>
   </div>
 </div>
+</span>
 
-
+<span>
 <div class = "my-img center"><%= image_tag("stering.png", width: 40) %></div>
 
 <%= form_with(url: reservations_path, method: :post) do |form| %>
@@ -41,11 +42,10 @@
   </table>
 
   <div>      
-    <h2 style=text-align:center>Booking Deatils</h2>
-    <%= render "reservations/new" %>
-  </div>
+    </div>
 
   <div>
-    <%= button_to "proceed", reservations_path	, method: :post, class:"btn btn-primary center" %>
+  <%= button_to "proceed", reservations_path	, method: :post, class:"btn btn-primary center" %>
   </div>
 <% end %>
+</span>

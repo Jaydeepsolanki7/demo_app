@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :seats 
 
-  resources :reservations, only: [:new, :create]
+  resources :reservations, only: [:index, :new, :show, :create, :edit, :update]
 
   resources :welcomes
   get "home", to: "welcomes#home"

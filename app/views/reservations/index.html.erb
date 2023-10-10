@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>User-Id</th>
+    <th>Name</th> 
+    <th>Email</th>
+    <th>Reservation status</th>
+    <th>Gender</th>
+    <th>Age</th>
+
+  </tr>
+<% @reservations.each do |reserve|%>
+
+
+
+  <tr>
+    <td><%= reserve.user_id%></td>
+    <td><%= reserve.user_name%></td>
+    <td><%= reserve.user_email%></td>
+    <td><%= reserve.reservation_status%></td>
+    <td><%= reserve.gender%></td>
+    <td><%= reserve.user_age%></td>
+  </tr>
+  <%end%>
+</table>
+
+</body>
+</html>
+

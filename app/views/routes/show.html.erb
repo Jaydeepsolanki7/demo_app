@@ -2,16 +2,14 @@
 <div class="container"><h1>Route-name: <%= @route.route_name %><h1>
 <h1>Distance:  <%= @route.distance%></h1></div>
 <div style="text-align:center"><%= button_to "edit",edit_route_path(@route), method: :get, class:"btn btn-primary" %></div>
-<hr>
 
-<div class="container">
+<div class="ms-2">
   <h2> All buses on this route <h2>
   <ul>
     <% @route.buses.each do |bus| %>
-      <h2><%= bus.bus_name %></h2>
+      <h4><%=bus.id%> - <%= bus.bus_name %></h4>
       <%end%>
   </ul>
 </div>
 
-<%= link_to "Add more buses", new_route_bus_path(@route) %>
-
+<div style="text-align:right"><%= button_to "Add more buses", new_route_bus_path(@route), method: :get, class: "btn btn-primary" %></div>

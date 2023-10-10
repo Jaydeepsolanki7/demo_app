@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class = "col md-8">
+    <h1>Enter Your Details</h1>
+    <%= form_with(model: @reservation, url: reservation_path(@reservation), method: :patch) do |form| %>
+      <%= form.label :user_name, 'Name' %>
+      <%= form.text_field :user_name , class:"form-control" %>
+
+      <%= form.label :user_email, 'Email' %>
+      <%= form.email_field :user_email , class:"form-control" %>
+
+      <%= form.select :gender, [:male, :female, :other]%>
+
+      <%= form.label :user_age, 'Age' %>
+      <%= form.number_field :user_age , class:"form-control"%>
+
+      <%= form.submit 'Book Seats', class:"btn btn-success" %>
+    <% end %>
+    </form>
+    </div>
+  </div>
+</div>
+

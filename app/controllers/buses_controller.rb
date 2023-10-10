@@ -1,6 +1,5 @@
 class BusesController < ApplicationController
   before_action :authenticate_user!
-  # after_action :create_seats_for_bus
 
   def index
     if params[:search]

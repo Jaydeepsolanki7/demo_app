@@ -1,7 +1,7 @@
 class SeatBookingMailer < ApplicationMailer
-  def acceptance_email(current_user, seat)
-    @seat = seat
-    mail(to: current_user.email, subject: 'Seat Booking Accepted')
+  def acceptance_email(reservation)
+    @reservation = reservation
+    mail to: @reservation.user.email, subject: 'Seat Booking Accepted'
   end
 
   def pending_email(user, seat)
