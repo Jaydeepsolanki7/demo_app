@@ -31,8 +31,7 @@ class SeatsController < ApplicationController
 
   private
 
-  def seat_params
-    params.require(:seat).permit(:seat_no, :availablity)
-  end
-
+    def seat_params
+      params.require(:seat).permit(:seat_no, :seat_price, :status)
+    end
 end

@@ -164,7 +164,7 @@ GEM
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
-    puma (5.6.7)
+    puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (3.0.8)
@@ -272,7 +272,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener_web (~> 2.0)
-  puma (~> 5.0)
+  puma (~> 6.0)
   rails (~> 7.1.0)
   rolify (~> 6.0.1)
   selenium-webdriver

@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   resources :seats 
 
   resources :reservations, only: [:new, :create]
-  patch 'update_multiple_seats', to: 'seats#update_multiple_seats'
-
 
   resources :welcomes
   get "home", to: "welcomes#home"

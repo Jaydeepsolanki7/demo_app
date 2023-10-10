@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
       @reservation = current_user.reservations.create(seat_id: number)
       if @reservation.save
         @reservation.seat.update(status: "booked")
+        flash.now[:alert] = "Selected seats booked successfully."
       else
         flash.now[:alert] = "Please select at least one seat."
         @seats = Seat.all

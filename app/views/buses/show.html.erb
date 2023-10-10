@@ -13,6 +13,7 @@
   </div>
 </div>
 
+
 <div class = "my-img center"><%= image_tag("stering.png", width: 40) %></div>
 
 <%= form_with(url: reservations_path, method: :post) do |form| %>
@@ -38,7 +39,12 @@
       <% end %>
     </tbody>
   </table>
-      
+
+  <div>      
+    <h2 style=text-align:center>Booking Deatils</h2>
+    <%= render "reservations/new" %>
+  </div>
+
   <div>
     <%= button_to "proceed", reservations_path	, method: :post, class:"btn btn-primary center" %>
   </div>
