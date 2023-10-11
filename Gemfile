@@ -16,6 +16,8 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 6.0" # it was gem "puma", "~> 5.0"
 
 #added gems
+gem 'kaminari'
+#
 
 gem "devise", "~> 4.9.2"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]

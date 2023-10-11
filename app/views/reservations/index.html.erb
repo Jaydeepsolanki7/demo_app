@@ -16,22 +16,25 @@
 
 
 
-  <tr>
-    <td><%= reserve.user_id%></td>
-    <td><%= reserve.seat_id%></td>
-    <td><%= reserve.user_name%></td>
-    <td><%= reserve.user_email%></td>
-    <td><%= reserve.reservation_status%></td>
-    <td><%= reserve.gender%></td>
-    <td><%= reserve.user_age%></td>
-    <%if current_user.has_role? :admin%>
-      <td><%= link_to "Accept", reservation_accept_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}, class:"button button1"%>
-      <td><%= link_to "Reject", reservation_reject_path(reserve.id), method: :post, data:{confirm: "You want to reject this booking?"}, class:"button button3"%>
-    <%end%>
-  </tr>
+    <tr>
+      <td><%= reserve.user_id%></td>
+      <td><%= reserve.seat_id%></td>
+      <td><%= reserve.user_name%></td>
+      <td><%= reserve.user_email%></td>
+      <td><%= reserve.reservation_status%></td>
+      <td><%= reserve.gender%></td>
+      <td><%= reserve.user_age%></td>
+      <%if current_user.has_role? :admin%>
+        <td><%= link_to "Accept", reservation_accept_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}, class:"button button1"%>
+        <td><%= link_to "Reject", reservation_reject_path(reserve.id), method: :post, data:{confirm: "You want to reject this booking?"}, class:"button button3"%>
+      <%end%>
+    </tr>
   <%end%>
-</table>
 
+</table>
+<div class="pagination justify-content-center my-2">  
+  <%= paginate @reservations %>
+</div>
 </body>
 </html>
 

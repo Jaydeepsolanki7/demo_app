@@ -5,7 +5,9 @@
 </head>
 <body>
   <h1>Seat Booking Accepted</h1>
- 
+  
+   <p>Dear <%= @reservation.user_name %>,</p>
+
   
   <p>Your booking for seat <%= @reservation.seat.seat_no %> has been accepted.</p>
   

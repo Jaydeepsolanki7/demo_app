@@ -1,7 +1,7 @@
 <h1 style="text-align:center"> All Routes </h1>
 <div class="container">
   <% @routes.each do |route|%>
-  <div class="me-3"><h2><%= link_to route.route_name, route %></h2></div>
+  <div class="me-3"><h2><%= link_to route.route_name, route , class:"button button1"%></h2></div>
   <br>
   <%end%>
 </div>

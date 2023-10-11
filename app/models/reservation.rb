@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  paginates_per 10
   belongs_to :user
   belongs_to :seat
   enum :reservation_status, [:pending, :accepted, :rejected]
