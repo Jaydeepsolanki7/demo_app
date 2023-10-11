@@ -12,12 +12,19 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
+
       <% if !current_user.nil?%>
+        <% if current_user.has_role? :admin %>
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle me-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Add routes
+            </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <%=button_to "All-Routes", routes_index_path, class:"dropdown-item me-auto my-1", method: :get	%>
+          </ul>
+        </div>
+      <%end %>
         <div class="dropdown">
           <a class="btn btn-secondary dropdown-toggle me-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Account

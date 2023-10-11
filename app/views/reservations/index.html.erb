@@ -1,11 +1,14 @@
-<table style="width:100%">
+<table style="width:100%" class="rotated-table">
   <tr>
     <th>User-Id</th>
+    <th>Seat-no.</th>
     <th>Name</th> 
     <th>Email</th>
     <th>Reservation status</th>
     <th>Gender</th>
     <th>Age</th>
+    <th>Confirm</th>
+    <th>Cancel</th>
 
   </tr>
 <% @reservations.each do |reserve|%>
@@ -14,11 +17,16 @@
 
   <tr>
     <td><%= reserve.user_id%></td>
+    <td><%= reserve.seat_id%></td>
     <td><%= reserve.user_name%></td>
     <td><%= reserve.user_email%></td>
     <td><%= reserve.reservation_status%></td>
     <td><%= reserve.gender%></td>
     <td><%= reserve.user_age%></td>
+    <%if current_user.has_role? :admin%>
+      <td><%= link_to "Accept", accept_booking_path(reserve.id, status:"acepted"), method: :post, data:{confirm: "You want to accept this booking?"}%>
+      <td><%= link_to "Reject", reject_booking_path(reserve.id, status:"rejected"), method: :post, data:{confirm: "You want to accept this booking?"}%>
+    <%end%>
   </tr>
   <%end%>
 </table>

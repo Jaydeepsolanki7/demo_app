@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :seats 
 
   resources :reservations, only: [:index, :new, :show, :create, :edit, :update]
+  post "reservations/:id/accept", to:"reservations#accept", as:"accept_booking"
+  post "reservations/:id/reject", to:"reservations#reject", as:"reject_booking"
 
   resources :welcomes
   get "home", to: "welcomes#home"

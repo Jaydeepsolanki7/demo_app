@@ -5,9 +5,9 @@
 </head>
 <body>
   <h1>Seat Booking Pending</h1>
-  <p>Dear <%= @user.name %>,</p>
+  <p>Dear <%= @reservation.user_name %>,</p>
   
-  <p>Your booking for seat <%= @seat.number %> is currently pending.</p>
+  <p>Your booking for seat <%= @reservation.seat_id %> is currently pending.</p>
   
   <p>We will review your booking request and notify you as soon as possible.</p>
 

@@ -1,23 +1,51 @@
-<div class="container">
-  <div class="row">
-    <div class = "col md-8">
-    <h1>Enter Your Details</h1>
-    <%= form_with(model: @reservation, url: reservation_path(@reservation), method: :patch) do |form| %>
-      <%= form.label :user_name, 'Name' %>
-      <%= form.text_field :user_name , class:"form-control" %>
 
-      <%= form.label :user_email, 'Email' %>
-      <%= form.email_field :user_email , class:"form-control" %>
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">ENTER USER DETAILS</h3>
+            <%= form_with(model: @reservation, url: reservation_path(@reservation), method: :patch) do |form| %>
 
-      <%= form.select :gender, [:male, :female, :other]%><br>
+            <form class="px-md-2">
 
-      <%= form.label :user_age, 'Age' %>
-      <%= form.number_field :user_age , class:"form-control"%>
+              <div class="form-outline mb-4">
+                <%= form.label :user_name, 'Name' %>
+                <%= form.text_field :user_name , class:"form-control" %>
+              </div>
 
-      <%= form.submit 'Book Seats', class:"btn btn-success" %>
-    <% end %>
-    </form>
+                <div class="col-md-2 mb-4">
+                  <div class="form-outline datepicker">
+                    <%= form.label :user_age, 'Age' %>
+                    <%= form.number_field :user_age , class:"form-control"%>
+                  </div>
+
+                </div>
+
+              <div class="row">
+                <div class="form-outline datepicker col-md-6 mb-4">
+                  <%= form.label :user_email, 'Email' %>
+                  <%= form.email_field :user_email , class:"form-control" %>
+                </div>
+              
+                <div class="col-md-6 my-auto">
+                 <%= form.select :gender, [:male, :female, :other] %><br>
+                </div>
+
+                </div>
+              </div>
+
+                  <%= form.submit 'Book Seats', class:"btn btn-success" %>
+            </form>
+
+          </div>
+          <%end%>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
+</section>
