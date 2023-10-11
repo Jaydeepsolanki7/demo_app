@@ -41,9 +41,9 @@ class ReservationsController < ApplicationController
   end
 
   def accept 
-    @reservation = Reservation.find(params[:id])
-    if @reservation.update(status: "Accepted")
-      SeatBookingMailer.booking_status_email(@reservation, "Accepted").deliver_now
+    @reservation = Reservation.find(params[:reservation_id])
+    if @reservation.update(reservation_status: "accepted")
+      SeatBookingMailer.acceptance_email(@reservation).deliver_now
       flash.now[:success] = "Booking Accepted successfully"
     else
       flash.now[:danger] = "Booking not accepted"
@@ -53,8 +53,8 @@ class ReservationsController < ApplicationController
 
   def reject
     @reservation = Reservation.find(params[:id])
-    if @reservation.update(status: "Rejected")
-      SeatBookingMailer.booking_status_email(@reservation, "Rejected").deliver_now
+    if @reservation.update(reservation_status: "rejected")
+      SeatBookingMailer.rejection_email(@reservation).deliver_now
       flash[:success] = "Booking rejected successfully"
     else
       flash.now[:danger] = "Booking rejection failed"

@@ -24,8 +24,8 @@
     <td><%= reserve.gender%></td>
     <td><%= reserve.user_age%></td>
     <%if current_user.has_role? :admin%>
-      <td><%= link_to "Accept", accept_booking_path(reserve.id, status:"acepted"), method: :post, data:{confirm: "You want to accept this booking?"}%>
-      <td><%= link_to "Reject", reject_booking_path(reserve.id, status:"rejected"), method: :post, data:{confirm: "You want to accept this booking?"}%>
+      <td><%= link_to "Accept", reservation_accept_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}%>
+      <td><%= link_to "Reject", reservation_reject_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}%>
     <%end%>
   </tr>
   <%end%>
