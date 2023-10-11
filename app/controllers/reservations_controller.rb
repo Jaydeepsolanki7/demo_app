@@ -17,9 +17,9 @@ class ReservationsController < ApplicationController
       @reservation = current_user.reservations.create(seat_id: number)
       if @reservation.save
         redirect_to edit_reservation_path	(@reservation)
-        flash.now[:success] = "Seat is booked"
+        flash[:success] = "Seat is booked"
       else
-        flash.now[:danger] = "Please select at least one seat."
+        flash[:danger] = "Please select at least one seat."
         @seats = Seat.all
       end
     end
@@ -44,20 +44,20 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:reservation_id])
     if @reservation.update(reservation_status: "accepted")
       SeatBookingMailer.acceptance_email(@reservation).deliver_now
-      flash.now[:success] = "Booking Accepted successfully"
+      flash[:success] = "Booking Accepted successfully"
     else
-      flash.now[:danger] = "Booking not accepted"
+      flash[:danger] = "Booking not accepted"
     end
     redirect_to reservation_path(@reservation)
   end
 
   def reject
-    @reservation = Reservation.find(params[:id])
+    @reservation = Reservation.find(params[:reservation_id])
     if @reservation.update(reservation_status: "rejected")
       SeatBookingMailer.rejection_email(@reservation).deliver_now
       flash[:success] = "Booking rejected successfully"
     else
-      flash.now[:danger] = "Booking rejection failed"
+      flash[:danger] = "Booking rejection failed"
     end
     redirect_to reservation_path(@reservation)
   end

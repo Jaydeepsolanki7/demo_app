@@ -1,3 +1,4 @@
+
 <table style="width:100%" class="rotated-table">
   <tr>
     <th>User-Id</th>
@@ -24,8 +25,8 @@
     <td><%= reserve.gender%></td>
     <td><%= reserve.user_age%></td>
     <%if current_user.has_role? :admin%>
-      <td><%= link_to "Accept", reservation_accept_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}%>
-      <td><%= link_to "Reject", reservation_reject_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}%>
+      <td><%= link_to "Accept", reservation_accept_path(reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}, class:"button button1"%>
+      <td><%= link_to "Reject", reservation_reject_path(reserve.id), method: :post, data:{confirm: "You want to reject this booking?"}, class:"button button3"%>
     <%end%>
   </tr>
   <%end%>

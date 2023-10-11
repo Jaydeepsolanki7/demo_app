@@ -1,12 +1,13 @@
 <h1> User Boooking Deatils </h1>
-<div class="container my-5 ms-auto mx-4">
+<div class="my-5 ms-5 ">
   <div class= "row">
-    <div class= "col-md-6 bg-dark text-white">
+    <div class= "col-md-4 bg-dark text-white">
       <h4>SEAT-NO. : <%= @reservation.seat_id %></h4>
       <h4>USER-NAME : <%= @reservation.user_name %></h4>
       <h4>EMAIL-ID : <%= @reservation.user_email %></h4>
       <h4>GENDER : <%= @reservation.gender %></h4>
       <h4>AGE : <%= @reservation.user_age %></h4>
+      <h4>STATUS : <%= @reservation.reservation_status%>
     </div>
   </div>
 </div>
