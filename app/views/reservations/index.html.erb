@@ -8,8 +8,10 @@
     <th>Reservation status</th>
     <th>Gender</th>
     <th>Age</th>
-    <th>Confirm</th>
-    <th>Cancel</th>
+    <% if current_user.has_role? :admin %>
+      <th>Confirm</th>
+      <th>Cancel</th>
+    <%end%>
 
   </tr>
 <% @reservations.each do |reserve|%>

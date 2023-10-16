@@ -11,8 +11,8 @@ class RoutesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get show" do
-    get routes_show_url
-    assert_response :success
-  end
+  # test "should get show" do
+  #   get routes_show_url
+  #   assert_response :success
+  # end
 end

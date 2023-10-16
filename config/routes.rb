@@ -24,8 +24,6 @@ Rails.application.routes.draw do
     get "accept"
     get "reject"
   end 
-  # post "reservations/:id/accept", to:"reservations#accept", as:"accept_booking"
-  # post "reservations/:id/reject", to:"reservations#reject", as:"reject_booking"
 
   resources :welcomes
   get "home", to: "welcomes#home"
