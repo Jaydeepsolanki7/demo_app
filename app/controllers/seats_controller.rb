@@ -1,6 +1,5 @@
 class SeatsController < ApplicationController
   # before_action :creating_seats
-
   def new
     @bus = Bus.find(params[:bus_id])
     @seats = @bus.seats
@@ -32,7 +31,7 @@ class SeatsController < ApplicationController
   private
 
   def seat_params
-    params.require(:seat).permit(:seat_no, :availablity)
+    params.require(:seat).permit(:seat_no, :availablity, :seat_price)
   end
 
 end

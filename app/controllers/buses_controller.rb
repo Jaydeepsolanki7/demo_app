@@ -1,6 +1,4 @@
 class BusesController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     if params[:search]
       @buses = Bus.where("departure_date = ? AND bus_destination = ? AND bus_arrival = ?", params[:search][:departure_date], params[:search][:bus_destination], params[:search][:bus_arrival] )
@@ -37,7 +35,7 @@ class BusesController < ApplicationController
     def create_seats_for_bus(bus)
 
       (1..bus.capacity).each do |seat|
-        @bus.seats.create(seat_no: seat)
+        @bus.seats.create(seat_no: seat, seat_price: bus.seat_price)
       end
     end
 end
