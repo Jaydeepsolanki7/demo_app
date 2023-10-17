@@ -15,17 +15,18 @@ class ReservationsController < ApplicationController
   def create
     params[:selected_seats].each do |number|
       @reservation = current_user.reservations.create(seat_id: number)
+    end
+    if @reservation.save
       redirect_to edit_reservation_path(@reservation) and return
-      if @reservation.save
-        flash[:success] = "Seat is booked"
-      else
-        flash[:danger] = "Please select at least one seat."
-        @seats = Seat.all
-      end
+      flash[:success] = "Seat is booked"
+    else
+      flash[:danger] = "Please select at least one seat."
+      @seats = Seat.all
     end
   end
 
   def edit
+    request.referer
     @reservation = Reservation.find(params[:id])
   end
 

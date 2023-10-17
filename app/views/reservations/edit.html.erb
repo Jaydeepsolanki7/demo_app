@@ -9,7 +9,7 @@
             alt="Sample photo">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">ENTER USER DETAILS</h3>
-            <%= form_with(model: @reservation, url: reservation_path(@reservation), method: :patch) do |form| %>
+            <%= form_with(model: @reservation, url: reservation_path(selected_seats_: params[:selected_seats_]), method: :patch) do |form| %>
 
             <form class="px-md-2">
 
