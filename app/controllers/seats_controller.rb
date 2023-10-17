@@ -1,5 +1,4 @@
 class SeatsController < ApplicationController
-  # before_action :creating_seats
   def new
     @bus = Bus.find(params[:bus_id])
     @seats = @bus.seats
