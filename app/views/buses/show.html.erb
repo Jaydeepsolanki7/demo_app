@@ -32,7 +32,7 @@
           <td><%= seat.seat_no %></td>
           <td><%= seat.status%></td>
           <% if (seat.status == "available")%> 
-            <td><%= check_box_tag 'selected_seats[]', seat.id, nil, {multiple: true} %></td>
+            <td><%= check_box_tag 'selected_seats[]', seat.seat_no, nil, {multiple: true} %></td>
           <%else%>
             <td>--</td>
           <%end%>

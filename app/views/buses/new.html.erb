@@ -2,7 +2,6 @@
 <div class="container">
   <%=form_with model: [ @route, @route.buses.build ] do |form| %>
 
-
     <div>
       <%= form.label :capacity %><br>
       <%= form.number_field :capacity, class:"form-control"  %><br>

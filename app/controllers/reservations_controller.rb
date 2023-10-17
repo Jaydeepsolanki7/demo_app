@@ -8,7 +8,6 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @seats = Seat.all
     @reservation = current_user.reservations.create
   end
 
@@ -21,12 +20,10 @@ class ReservationsController < ApplicationController
       flash[:success] = "Seat is booked"
     else
       flash[:danger] = "Please select at least one seat."
-      @seats = Seat.all
     end
   end
 
   def edit
-    request.referer
     @reservation = Reservation.find(params[:id])
   end
 

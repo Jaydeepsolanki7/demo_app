@@ -7,7 +7,7 @@
   <h2> All buses on this route <h2>
   <ul>
     <% @route.buses.each do |bus| %>
-      <h4><%=bus.id%> - <%= bus.bus_name %></h4>
+      <h4><%= bus.bus_name %></h4>
       <%end%>
   </ul>
 </div>

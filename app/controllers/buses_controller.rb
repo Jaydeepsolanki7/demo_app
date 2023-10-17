@@ -35,7 +35,7 @@ class BusesController < ApplicationController
     def create_seats_for_bus(bus)
 
       (1..bus.capacity).each do |seat|
-        @bus.seats.create(seat_no: seat, seat_price: bus.seat_price)
+        bus.seats.create(seat_no: seat, seat_price: bus.seat_price)
       end
     end
 end

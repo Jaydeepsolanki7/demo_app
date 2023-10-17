@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   paginates_per 10
   belongs_to :user
-  belongs_to :seat
+  belongs_to :seat, optional: true
   enum :reservation_status, [:pending, :accepted, :rejected]
   enum gender: {male: "male", female: "female", other: "other"}
 
