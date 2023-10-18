@@ -21,7 +21,6 @@ class ReservationsController < ApplicationController
       flash[:success] = "Seat is booked"
     else
       flash[:danger] = "Please select at least one seat."
-      @seats = Seat.all
     end
   end
 
@@ -33,8 +32,8 @@ class ReservationsController < ApplicationController
     debugger
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
-      @reservation.seat.update(status: "booked")
       flash[:success] = 'Booking details updated'
+      @reservation.seat.update(status: "booked")
       redirect_to reservation_path(@reservation)
     else
       render :edit
