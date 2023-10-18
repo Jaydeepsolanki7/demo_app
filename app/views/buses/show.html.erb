@@ -17,7 +17,7 @@
 <span>
 <div class = "my-img center"><%= image_tag("stering.png", width: 40) %></div>
 
-<%= form_with(url: reservations_path, method: :post) do |form| %>
+<%= form_with(url: bus_reservations_path(@bus), method: :post) do |form| %>
   <table class="rotated-table  mx-auto center">
     <thead>
       <tr>
@@ -32,7 +32,7 @@
           <td><%= seat.seat_no %></td>
           <td><%= seat.status%></td>
           <% if (seat.status == "available")%> 
-            <td><%= check_box_tag 'selected_seats[]', seat.seat_no, nil, {multiple: true} %></td>
+            <td><%= check_box_tag 'selected_seats[]', seat.id, nil, {multiple: true} %></td>
           <%else%>
             <td>--</td>
           <%end%>
@@ -42,10 +42,10 @@
   </table>
 
   <div>      
+  <div style="text-align:center">
+    <%= form.submit class: "btn btn-primary"%>
+  </div>
     </div>
 
-  <div style="text-align:center">
-  <%= button_to "proceed", reservations_path, method: :post, class:"btn btn-success" %>
-  </div>
 <% end %>
 </span>

@@ -15,15 +15,15 @@ Rails.application.routes.draw do
   end
 
   resources :buses, only: [:index, :show, :new, :create] do
-    resources :seats, only: [:show, :new, :create, :edit, :update]
+    resources :seats, only: [:show, :new, :create, :edit, :update] 
+    resources :reservations, only: [:index, :new, :show, :create, :edit, :update] do
+      get "accept"
+      get "reject"
+    end 
   end
 
   resources :seats 
 
-  resources :reservations, only: [:index, :new, :show, :create, :edit, :update] do
-    get "accept"
-    get "reject"
-  end 
 
   resources :welcomes
   get "home", to: "welcomes#home"

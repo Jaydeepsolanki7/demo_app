@@ -12,7 +12,6 @@ class BusesController < ApplicationController
 
   def new
     @route = Route.find(params[:route_id])
-
     @bus = @route.buses.new
   end
 

@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
       @reservation = current_user.reservations.create(seat_id: number)
     end
     if @reservation.save
-      redirect_to edit_reservation_path(@reservation) and return
+      redirect_to edit_bus_reservation_path(params[:bus_id], @reservation) and return
       flash[:success] = "Seat is booked"
     else
       flash[:danger] = "Please select at least one seat."
@@ -29,12 +29,11 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    debugger
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
       flash[:success] = 'Booking details updated'
       @reservation.seat.update(status: "booked")
-      redirect_to reservation_path(@reservation)
+      redirect_to bus_reservation_path(params[:bus_id], @reservation)
     else
       render :edit
     end
@@ -48,7 +47,7 @@ class ReservationsController < ApplicationController
     else
       flash[:danger] = "Booking not accepted"
     end
-    redirect_to reservation_path(@reservation)
+    redirect_to bus_reservation_path(params[:bus_id], @reservation)
   end
 
   def reject
@@ -59,7 +58,7 @@ class ReservationsController < ApplicationController
     else
       flash[:danger] = "Booking rejection failed"
     end
-    redirect_to reservation_path(@reservation)
+    redirect_to bus_reservation_path(params[:bus_id], @reservation)
   end
 
   private

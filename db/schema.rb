@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_113256) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reservation_status", default: 0
-    t.datetime "reservation_date", default: "2023-10-16 12:38:33"
+    t.datetime "reservation_date", default: "2023-10-18 06:10:09"
     t.string "user_name"
     t.string "user_email"
     t.string "gender"
