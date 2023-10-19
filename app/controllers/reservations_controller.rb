@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  def index 
+  def index
     @reservations = Reservation.all.page params[:page]
   end
 
@@ -8,16 +8,20 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @seats = Seat.all
+    selected_seats = params[:selected_seats]&.split()
     @reservation = current_user.reservations.new
   end
 
   def create
-    params[:selected_seats].each do |number|
-      @reservation = current_user.reservations.create(seat_id: number)
+    selected_seats = params[:reservation][:seat_ids].split()
+
+    selected_seats.each do |num|
+      @reservation = current_user.reservations.create(reservation_params)
+      @reservation.bus.seats.find(num.to_i).update(status:"booked", reservation_id: @reservation.id)
     end
     if @reservation.save
-      redirect_to edit_bus_reservation_path(params[:bus_id], @reservation) and return
+      redirect_to bus_reservation_path( params[:bus_id], @reservation)
+
       flash[:success] = "Seat is booked"
     else
       flash[:danger] = "Please select at least one seat."
@@ -29,11 +33,16 @@ class ReservationsController < ApplicationController
   end
 
   def update
+    debugger
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
+   
       flash[:success] = 'Booking details updated'
-      @reservation.seat.update(status: "booked")
-      redirect_to bus_reservation_path(params[:bus_id], @reservation)
+      # @reservation.bus.seats do |num|
+      #   num.seat.update(status: "booked")
+      # end
+
+      redirect_to bus_reservation_path( params[:bus_id], @reservation)
     else
       render :edit
     end
@@ -47,7 +56,7 @@ class ReservationsController < ApplicationController
     else
       flash[:danger] = "Booking not accepted"
     end
-    redirect_to bus_reservation_path(params[:bus_id], @reservation)
+    redirect_to bus_reservation_path(@reservation)
   end
 
   def reject
@@ -58,12 +67,14 @@ class ReservationsController < ApplicationController
     else
       flash[:danger] = "Booking rejection failed"
     end
-    redirect_to bus_reservation_path(params[:bus_id], @reservation)
+    redirect_to bus_reservation_path(@reservation)
   end
 
   private
 
     def reservation_params
-      params.require(:reservation).permit(:reservation_status, :reservation_date, :user_name, :user_email, :gender, :user_age, seat_ids: [])
+      params.require(:reservation).permit(:reservation_status, :reservation_date, 
+                                  :user_name, :user_email, :gender, :user_age, booking_details_attributes:[:name, :age, :gender, :email, :reservation_id])
+                                  .merge(bus_id: params[:bus_id])
     end
 end

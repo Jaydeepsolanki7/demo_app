@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_10_113256) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_19_100706) do
   create_table "buses", force: :cascade do |t|
     t.integer "bus_type"
     t.integer "capacity"
@@ -28,18 +28,29 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_113256) do
     t.index ["route_id"], name: "index_buses_on_route_id"
   end
 
+  create_table "reservation_details", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.string "gender"
+    t.string "email"
+    t.integer "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_reservation_details_on_reservation_id"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "seat_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reservation_status", default: 0
-    t.datetime "reservation_date", default: "2023-10-18 06:10:09"
+    t.datetime "reservation_date", default: "2023-10-19 07:25:50"
     t.string "user_name"
     t.string "user_email"
     t.string "gender"
     t.integer "user_age"
-    t.index ["seat_id"], name: "index_reservations_on_seat_id"
+    t.integer "bus_id"
+    t.index ["bus_id"], name: "index_reservations_on_bus_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -68,7 +79,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_113256) do
     t.integer "seat_no"
     t.integer "seat_price"
     t.string "status", default: "available"
+    t.integer "reservation_id"
     t.index ["bus_id"], name: "index_seats_on_bus_id"
+    t.index ["reservation_id"], name: "index_seats_on_reservation_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,7 +113,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_113256) do
   end
 
   add_foreign_key "buses", "routes"
-  add_foreign_key "reservations", "seats"
+  add_foreign_key "reservation_details", "reservations"
+  add_foreign_key "reservations", "buses"
   add_foreign_key "reservations", "users"
   add_foreign_key "seats", "buses"
+  add_foreign_key "seats", "reservations"
 end

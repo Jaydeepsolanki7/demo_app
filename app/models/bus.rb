@@ -6,6 +6,6 @@ class Bus < ApplicationRecord
 
   belongs_to :route
   has_many :seats, dependent: :destroy
-  has_many :bookings
+  has_many :reservations
   enum :bus_type, [:normal, :ac_sleeper, :sleeper]
 end
