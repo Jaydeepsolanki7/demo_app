@@ -19,7 +19,6 @@ gem "puma", "~> 6.0" # it was gem "puma", "~> 5.0"
 gem 'kaminari'
 #
 gem "faker"
-#
 
 gem "devise", "~> 4.9.2"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]

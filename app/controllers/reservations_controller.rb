@@ -38,9 +38,6 @@ class ReservationsController < ApplicationController
     if @reservation.update(reservation_params)
    
       flash[:success] = 'Booking details updated'
-      # @reservation.bus.seats do |num|
-      #   num.seat.update(status: "booked")
-      # end
 
       redirect_to bus_reservation_path( params[:bus_id], @reservation)
     else
