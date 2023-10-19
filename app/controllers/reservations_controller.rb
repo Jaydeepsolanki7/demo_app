@@ -71,7 +71,7 @@ class ReservationsController < ApplicationController
 
     def reservation_params
       params.require(:reservation).permit(:reservation_status, :reservation_date, 
-                                  :user_name, :user_email, :gender, :user_age, booking_details_attributes:[:name, :age, :gender, :email, :reservation_id])
+                                  :user_name, :user_email, :gender, :user_age, reservation_details_attributes:[:id, :name, :age, :gender, :email, :_destroy])
                                   .merge(bus_id: params[:bus_id])
     end
 end

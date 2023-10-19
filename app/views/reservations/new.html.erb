@@ -10,9 +10,6 @@
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">ENTER USER DETAILS</h3>
             <%= form_with(model: @reservation, url: bus_reservations_path(selected_seats_: params[:selected_seats_]), method: :post) do |form| %>
-
-            <form class="px-md-2">
-
               <div class="form-outline mb-4">
                 <%= form.label :user_name, 'Name' %>
                 <%= form.text_field :user_name , class:"form-control" %>
@@ -38,19 +35,19 @@
 
                 </div>
               </div>
+
               <%= form.hidden_field :seat_ids, value: params[:selected_seats] %>
 
-              <!--<div id="reservation_details">
-                <%= form.fields_for :reservation_fields do |reservation_fields| %>
-                  <%= render "reservation_details", form: reservation_fields%>
+              <div id="reservation_detail">
+                <%= form.fields_for :reservation_details do |details| %>
+                  <%= render "reservation_detail_fields", form: details%>
                 <%end%>
               </div>
 
-              <%= link_to "add_more" %> -->
-
+              <div class="links">
+                <%= link_to_add_association "Add More Reservation", form, :reservation_details %>
+              </div>
                 <%= form.submit 'Book Seats', class:"btn btn-success" %>
-            </form>
-
           </div>
           <%end%>
         </div>
