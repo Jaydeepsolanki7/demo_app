@@ -9,12 +9,4 @@ class Reservation < ApplicationRecord
 
   accepts_nested_attributes_for :reservation_details, allow_destroy:true, reject_if: :all_blank
 
-  # before_update :ensure_name_and_email_presence
-
-  # def ensure_name_and_email_presence
-  #   if user_name.blank? || user_email.blank?
-  #     errors.add(:base, 'Name and Email must be present before updating')
-  #     throw(:abort)
-  #   end
-  # end
 end

@@ -1,3 +1,6 @@
+<h1>New User</h1>
+<%= @selected_seats %>
+<%= @selected_seats.times do |seats|  %> 
 <section class="h-100 h-custom" style="background-color: #8fc4b7;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -8,44 +11,75 @@
             alt="Sample photo">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">ENTER USER DETAILS</h3>
-            <%= form_with(model: @reservation, url: bus_reservations_path(selected_seats_: params[:selected_seats_]), method: :post) do |form| %>
+            
+              <%= form_with(model: @reservation, url: bus_reservations_path(selected_seats_: params[:selected_seats_]), method: :post) do |form| %>
+                <div class="form-outline mb-4">
+                  <%= form.label :user_name, 'Name' %>
+                  <%= form.text_field :user_name , class:"form-control" %>
+                </div>
 
-            <form class="px-md-2">
+                  <div class="col-md-2 mb-4">
+                    <div class="form-outline datepicker">
+                      <%= form.label :user_age, 'Age' %>
+                      <%= form.number_field :user_age , class:"form-control"%>
+                    </div>
 
-              <div class="form-outline mb-4">
-                <%= form.label :user_name, 'Name' %>
-                <%= form.text_field :user_name , class:"form-control" %>
-              </div>
-
-                <div class="col-md-2 mb-4">
-                  <div class="form-outline datepicker">
-                    <%= form.label :user_age, 'Age' %>
-                    <%= form.number_field :user_age , class:"form-control"%>
                   </div>
 
+                <div class="row">
+                  <div class="form-outline datepicker col-md-6 mb-4">
+                    <%= form.label :user_email, 'Email' %>
+                    <%= form.email_field :user_email , class:"form-control" %>
+                  </div>
+                
+                  <div class="col-md-6 my-auto">
+                  <%= form.select :gender, [:male, :female, :other] %><br>
+                  </div>
+
+                  </div>
                 </div>
 
-              <div class="row">
-                <div class="form-outline datepicker col-md-6 mb-4">
-                  <%= form.label :user_email, 'Email' %>
-                  <%= form.email_field :user_email , class:"form-control" %>
-                </div>
-              
-                <div class="col-md-6 my-auto">
-                 <%= form.select :gender, [:male, :female, :other] %><br>
-                </div>
-
-                </div>
-              </div>
-              <%= form.hidden_field :seat_ids, value: params[:selected_seats] %>  
-
+                <%= form.hidden_field :seat_ids, value: params[:selected_seats] %>
+                
                   <%= form.submit 'Book Seats', class:"btn btn-success" %>
-            </form>
-
-          </div>
-          <%end%>
+            </div>
+            <%end%>
         </div>
       </div>
     </div>
   </div>
+ <%end%>
 </section>
+
+
+<h1>New User</h1>
+
+<%= form_with(model: @reservations, url: bus_reservations_path(selected_seats_: params[:selected_seats_]), method: :post) do |form| %>
+  <% @reservations.each_with_index do |reservation, index| %>
+    <h3>Enter User Details for Seat <%= index + 1 %></h3>
+
+    <div class="form-outline mb-4">
+      <%= form.label "reservations[#{index}][user_name]", 'Name' %>
+      <%= form.text_field "reservations[#{index}][user_name]", class: "form-control" %>
+    </div>
+
+    <div class="col-md-2 mb-4">
+      <div class="form-outline datepicker">
+        <%= form.label "reservations[#{index}][user_age]", 'Age' %>
+        <%= form.number_field "reservations[#{index}][user_age]", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-outline datepicker mb-4">
+      <%= form.label "reservations[#{index}][user_email]", 'Email' %>
+      <%= form.email_field "reservations[#{index}][user_email]", class: "form-control" %>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <%= form.select "reservations[#{index}][gender]", [:male, :female, :other], {}, class: "form-control" %>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :seat_ids, value: params[:selected_seats] %>
+  <%= form.submit 'Book Seats', class: "btn btn-success" %>
+<% end %>

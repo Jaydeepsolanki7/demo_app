@@ -8,14 +8,17 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    selected_seats = params[:selected_seats]&.split()
+    
+    @selected_seats = params[:selected_seats].count
     @reservation = current_user.reservations.new
+    @reservation.reservation_details.build
   end
 
   def create
-    selected_seats = params[:reservation][:seat_ids].split()
+    debugger
+    @selected_seats = params[:reservation][:seat_ids].split()
 
-    selected_seats.each do |num|
+    @selected_seats.each do |num|
       @reservation = current_user.reservations.create(reservation_params)
       @reservation.bus.seats.find(num.to_i).update(status:"booked", reservation_id: @reservation.id)
     end
@@ -36,9 +39,7 @@ class ReservationsController < ApplicationController
     debugger
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
-   
       flash[:success] = 'Booking details updated'
-
       redirect_to bus_reservation_path( params[:bus_id], @reservation)
     else
       render :edit
@@ -53,7 +54,7 @@ class ReservationsController < ApplicationController
     else
       flash[:danger] = "Booking not accepted"
     end
-    redirect_to bus_reservation_path(@reservation)
+    redirect_to bus_reservation_path(params[:bus_id], @reservation)
   end
 
   def reject
@@ -64,14 +65,12 @@ class ReservationsController < ApplicationController
     else
       flash[:danger] = "Booking rejection failed"
     end
-    redirect_to bus_reservation_path(@reservation)
+    redirect_to bus_reservation_path(params[:bus_id], @reservation)
   end
 
   private
 
     def reservation_params
-      params.require(:reservation).permit(:reservation_status, :reservation_date, 
-                                  :user_name, :user_email, :gender, :user_age, reservation_details_attributes:[:id, :name, :age, :gender, :email, :_destroy])
-                                  .merge(bus_id: params[:bus_id])
+      params.require(:reservation).permit(:reservation_status, :reservation_date, :user_name, :user_email, :gender, :user_age, reservation_details_attributes:[:id, :name, :age, :gender, :email]).merge(bus_id: params[:bus_id])
     end
 end

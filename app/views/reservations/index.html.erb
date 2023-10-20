@@ -28,10 +28,10 @@
         <td><%= reserve.reservation_status%></td>
         <td><%= reserve.gender%></td>
         <td><%= reserve.user_age%></td>
-        <!--<%if current_user.has_role? :admin%>
-          <td><%= link_to "Accept", bus_reservation_accept_path(reserve.id, @reservation.bus.seats.reservation_id), method: :post, data:{confirm: "You want to accept this booking?"}, class:"button button1"%>
-          <td><%= link_to "Reject", bus_reservation_reject_path(reserve.id), method: :post, data:{confirm: "You want to reject this booking?"}, class:"button button3"%>
-        <%end%> -->
+        <%if current_user.has_role? :admin%>
+          <td><%= link_to "Accept", bus_reservation_accept_path(reserve.bus, reserve.id), method: :post, data:{confirm: "You want to accept this booking?"}, class:"button button1"%>
+          <td><%= link_to "Reject", bus_reservation_reject_path(reserve.bus, reserve.id), method: :post, data:{confirm: "You want to reject this booking?"}, class:"button button3"%>
+        <%end%> 
       </tr>
     <%end%>
 

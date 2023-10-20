@@ -1,18 +1,20 @@
-<div class="nested-fields">
-  <div class="fields">
-    <%= f.label :name %>
-    <%= f.text_field :name%>
+<h4>Passenger</h4>
+<div class="fields">
+  <%= f.text_field :name, label: false%>
 
-    <%= f.label :age %>
-    <%= f.number_field :age%>
+  <%= f.number_field :age, label: false%>
 
-    <%= f.label :email %>
-    <%= f.text_field :email%>
+  <%= f.label :email, label: false %>
 
-    <div class="col-md-6 my-auto">
-      <%= f.select :gender, [:male, :female, :other] %><br>
-    </div>
-
-    <%= link_to_remove_association "Delete Reservation", f %>
-  </div>
 </div>
+
+<%= form.fields_for :reservation_detail do |addresses_form| %>
+
+    <%= addresses_form.label :name %>
+    <%= addresses_form.text_field :name %><br>
+    <%= addresses_form.label :email %>
+    <%= addresses_form.text_field :email %><br>
+    <%= addresses_form.label :age %>
+    <%= addresses_form.number_field :age %>
+
+<% end %>
